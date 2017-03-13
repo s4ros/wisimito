@@ -4,11 +4,6 @@ import sys
 import subprocess
 
 ###############################################################################
-# ██     ██ ██ ███████ ██ ███    ███ ██ ████████  ██████
-# ██     ██ ██ ██      ██ ████  ████ ██    ██    ██    ██
-# ██  █  ██ ██ ███████ ██ ██ ████ ██ ██    ██    ██    ██
-# ██ ███ ██ ██      ██ ██ ██  ██  ██ ██    ██    ██    ██
-#  ███ ███  ██ ███████ ██ ██      ██ ██    ██     ██████
 ## WisiMiTo (c) 2017 by s4ros
 ### simple nearest wifi observer
 
@@ -112,9 +107,11 @@ def sort_by_quality(wifi):
         sortedl[j+1], sortedl[j] = sortedl[j], sortedl[j+1]
   return sortedl
 # -----------------------------------------------------------------------
+def print_wifi_clean(wifi):
+  print "[%3.0f%%] WiFi SSID: %25s,\t(signal: %s)" % (wifi['quality'], wifi['ssid'], wifi['signal'])
+# -----------------------------------------------------------------------
 
 def print_wifi(wifi):
-  #print "[%3.0f%%] WiFi SSID: %25s,\t(signal: %s)" % (wifi['quality'], wifi['ssid'], wifi['signal'])
   # tp - ToPrint
   tp =  c.b +"[" + c.e
   ## quality
@@ -144,6 +141,6 @@ if __name__ == "__main__":
     check_user_permissions()
     wifi = sort_by_quality(build_wifi())
     for el in wifi:
-      print_wifi(el)
+      print_wifi_clean(el)
     time.sleep(1)
     os.system("clear")
